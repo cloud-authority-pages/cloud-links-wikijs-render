@@ -1,5 +1,6 @@
-FROM ghcr.io/requarks/wiki:2
-ENV DB_TYPE=sqlite
-ENV DB_FILEPATH=/wiki/data/wiki.db
-ENV PORT=3000
+FROM node:20-alpine
+WORKDIR /app
+RUN npm init -y && npm install express marked
+COPY wiki.js .
 EXPOSE 3000
+CMD ["node", "wiki.js"]
